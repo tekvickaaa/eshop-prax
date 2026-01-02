@@ -16,7 +16,7 @@ defineProps<{
       <span class="product-category">{{ productCategory }}</span>
       <p>{{ productDesc }}</p>
       <div class="product-cart">
-        <span class="price">{{ productPrice }}</span>
+        <span class="price">{{ productPrice }} €</span>
         <button>Add to Cart</button>
       </div>
     </div>
@@ -37,14 +37,24 @@ h4 {
   height: 20rem;
   background-color: #f0f0f5;
   color: #080808;
-  border-radius: 3rem;
+  border-radius: 2rem;
   padding: 1rem;
 }
 
-img {
+.product-card button {
+  font-size: 1.1rem;
+  background-color: #190d55;
+  color: white;
+  border: none;
+  border-radius: 0.8rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.product-card img {
   width: 100%;
   height: auto;
-  border-radius: 2rem;
+  border-radius: 1.5rem;
 }
 
 .product-category {
@@ -63,6 +73,7 @@ img {
 }
 
 .price {
+  font-size: 1.2rem;
   font-weight: bold;
 }
 </style>
