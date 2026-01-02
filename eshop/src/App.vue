@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
+import ProductCard from './components/ProductCard.vue';
 import TheWelcome from './components/TheWelcome.vue'
 </script>
 
@@ -13,7 +14,13 @@ import TheWelcome from './components/TheWelcome.vue'
   </header>
 
   <main>
-    <TheWelcome />
+    <ProductCard 
+      productName="Sample Product" 
+      productDesc="This is a sample product description." 
+      productImgSrc="https://upload.wikimedia.org/wikipedia/commons/d/db/Swissbit_2GB_PC2-5300U-555.jpg" 
+      productCategory="Sample Category" 
+      :productPrice="29.99"
+    />
   </main>
 </template>
 
