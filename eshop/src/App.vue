@@ -18,6 +18,10 @@ import TheWelcome from './components/TheWelcome.vue'
 </template>
 
 <style scoped>
+template {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #080808;
+}
 header {
   line-height: 1.5;
 }
