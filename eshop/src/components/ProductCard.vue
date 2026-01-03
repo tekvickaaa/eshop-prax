@@ -3,7 +3,8 @@ defineProps<{
   productName: string
   productDesc: string
   productImgSrc: string
-  productCategory: string
+  productCategory1: string
+  productCategory2: string
   productPrice: number
 }>()
 </script>
@@ -13,7 +14,8 @@ defineProps<{
     <img :src="productImgSrc" alt="">
     <div class="product-bottom">
       <h4>{{ productName }}</h4>
-      <span class="product-category">{{ productCategory }}</span>
+      <span class="product-category">{{ productCategory1 }}</span>
+      <span class="product-category">{{ productCategory2 }}</span>
       <p>{{ productDesc }}</p>
       <div class="product-cart">
         <span class="price">{{ productPrice }} €</span>
@@ -35,7 +37,7 @@ h4 {
   justify-content: space-between;
   width: 15rem;
   height: 20rem;
-  background-color: #f0f0f5;
+  background-color: #dfdff0;
   color: #080808;
   border-radius: 2rem;
   padding: 1rem;
@@ -63,6 +65,7 @@ h4 {
   border: 0.0652rem solid #190d55;
   border-radius: 0.125rem;
   padding: 0.125rem 0.25rem;
+  margin-right: 0.25rem;
 }
 
 .product-cart {

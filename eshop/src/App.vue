@@ -1,24 +1,33 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
 import ProductCard from './components/ProductCard.vue';
-import TheWelcome from './components/TheWelcome.vue'
+import WelcomeItem from './components/WelcomeItem.vue';
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+  <nav>
+    <h2>RAM Store</h2>
+    <div>
+      <a href="/cart">Cart</a>
     </div>
+  </nav>
+
+  <header class="wrapped">
+    <div>
+      <h1>Welcome to the greatest RAM store in Europe!</h1>
+      <p>Even if the prices are high, we guarantee the best quality and promise not to sell to AI companies. Only occassionally.</p>
+    </div>
+    <img src="./assets/images/hero-image.png" alt="hero image" class="hero-image">
   </header>
+
+  <WelcomeItem class="wrapped"/>
 
   <main>
     <ProductCard 
       productName="Sample Product" 
       productDesc="This is a sample product description." 
       productImgSrc="https://upload.wikimedia.org/wikipedia/commons/d/db/Swissbit_2GB_PC2-5300U-555.jpg" 
-      productCategory="Sample Category" 
+      productCategory1="Sample Category" 
+      productCategory2="4 GB"
       :productPrice="29.99"
     />
   </main>
@@ -26,33 +35,20 @@ import TheWelcome from './components/TheWelcome.vue'
 
 <style scoped>
 template {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: #080808;
 }
 header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4rem;
   line-height: 1.5;
+  background-color: #190d55;
+  border-radius: 2rem;
+  color: #dfdff0;
+  margin-bottom: 1rem;
 }
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+header div {
+  max-width: 35rem;
 }
 </style>
