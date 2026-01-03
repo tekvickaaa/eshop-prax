@@ -1,9 +1,11 @@
+@import './base.css';
+
 body {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: #080808;
 }
 
 .wrapped {
-  width: 77.5rem;
+  max-width: 77.5rem;
   margin: auto;
 }

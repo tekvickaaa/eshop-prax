@@ -1,16 +1,23 @@
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
+  productId: number
   productName: string
   productDesc: string
   productImgSrc: string
   productCategory1: string
   productCategory2: string
   productPrice: number
-}>()
+}>();
+
+const emit = defineEmits(['add-to-cart']);
+
+function handleAddToCart() {
+  emit('add-to-cart', props.productId);
+}
 </script>
 
 <template>
-  <div class="product-card">
+  <div class="product-card" :key="productId">
     <img :src="productImgSrc" alt="">
     <div class="product-bottom">
       <h4>{{ productName }}</h4>
@@ -19,7 +26,7 @@ defineProps<{
       <p>{{ productDesc }}</p>
       <div class="product-cart">
         <span class="price">{{ productPrice }} €</span>
-        <button>Add to Cart</button>
+        <button @click="handleAddToCart()">Add to Cart</button>
       </div>
     </div>
   </div>
@@ -35,8 +42,8 @@ h4 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 15rem;
-  height: 20rem;
+  width: 18rem;
+  height: 24rem;
   background-color: #dfdff0;
   color: #080808;
   border-radius: 2rem;
@@ -78,5 +85,13 @@ h4 {
 .price {
   font-size: 1.2rem;
   font-weight: bold;
+}
+
+p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 </style>
