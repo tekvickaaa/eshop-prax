@@ -14,6 +14,19 @@ const emit = defineEmits(['add-to-cart']);
 function handleAddToCart() {
   emit('add-to-cart', props.productId);
 }
+
+async function handleRemoveProduct() {
+  try {
+    const response = await fetch(`http://localhost:3333/products/${props.productId}`, {
+      method: 'DELETE'
+    });
+    if (!response.ok) {
+      console.error('Failed to remove product');
+    } 
+  } catch (error) {
+    console.error('Error removing product:', error);
+  }
+}
 </script>
 
 <template>
@@ -26,6 +39,7 @@ function handleAddToCart() {
       <p>{{ productDesc }}</p>
       <div class="product-cart">
         <span class="price">{{ productPrice }} €</span>
+        <button @click="handleRemoveProduct()">Remove</button>
         <button @click="handleAddToCart()">Add to Cart</button>
       </div>
     </div>
