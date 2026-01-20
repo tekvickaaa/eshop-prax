@@ -1,0 +1,146 @@
+[
+  {
+    "id": 1,
+    "name": "Kingston Fury Beast, 2x8 GB, 3200 MHz, DDR4",
+    "detail": "pamäť RAM pre PC, 2 x 8 GB, DDR4 (PC4), 3200 Mhz (PC4-25600), CL16, Intel XMP, 1,35 V, herná, pasívny chladič",
+    "price": 133.41,
+    "img_src": "https://img.datacomp.sk/kingston-fury-beast-2x8-gb-3200-mhz-ddr4_igb423797.jpg",
+    "category1": "DDR4",
+    "category2": "2x8 GB"
+  },
+  {
+    "id": 2,
+    "name": "Kingston FURY Beast, 2x32GB, 5600MHz, DDR5",
+    "detail": "pamäť RAM pre PC, 2 x 32 GB, DDR5 (PC5), 5600 Mhz (PC5-44800), CL40, Intel XMP, 1,25 V, herná, pasívny chladič",
+    "price": 730.8,
+    "img_src": "https://img.datacomp.sk/kingston-fury-beast-2x32gb-5600mhz-ddr5_igb437842.jpg",
+    "category1": "DDR5",
+    "category2": "2x32 GB"
+  },
+  {
+    "id": 3,
+    "name": "Kingston Fury Impact, 16GB, 3200 MHz, DDR4, SO-DIMM",
+    "detail": "pamäť RAM pre notebooky, 1 x 16 GB, SO-DIMM DDR4 (PC4), 3200 Mhz (PC4-25600), CL20, Intel XMP, 1,2 V, herná",
+    "price": 108.65,
+    "img_src": "https://img.datacomp.sk/kingston-fury-impact-16gb-3200-mhz-ddr4-so-dimm_igb460359.jpg",
+    "category1": "DDR4",
+    "category2": "16 GB"
+  },
+  {
+    "id": 4,
+    "name": "G.SKILL 32GB kit DDR5 7200 CL34 Trident Z5 RGB",
+    "detail": "pamäť RAM pre PC, 2 x 16 GB, DDR5 (PC5), 7200 Mhz (PC5-57600), CL34, Intel XMP, AMD EXPO, 1,4 V, RGB podsvietenie",
+    "price": 589.6,
+    "img_src": "https://img.datacomp.sk/g-skill-32gb-kit-ddr5-7200-cl34-trident-z5-rgb_igb463988.jpg",
+    "category1": "DDR5",
+    "category2": "2x16 GB"
+  },
+  {
+    "id": 5,
+    "name": "Kingston FURY Beast Black EXPO, 2x16GB, 6400MHz, DDR5",
+    "detail": "pamäť RAM pre PC, 2 x 16 GB, DDR5 (PC5), 6400 Mhz (PC5-51200), CL32, AMD EXPO, 1,4 V, herná, pasívny chladič",
+    "price": 401.69,
+    "img_src": "https://img.datacomp.sk/kingston-fury-beast-black-expo-2x16gb-6400mhz-ddr5_igb486514.jpg",
+    "category1": "DDR5",
+    "category2": "2x16 GB"
+  },
+  {
+    "id": 6,
+    "name": "Kingston SO-DIMM 1x 8 GB DDR4, 3200 MHz",
+    "detail": "pamäť RAM pre notebooky, 1 x 8 GB, 3200 Mhz (PC4-25600), CL22, 1,2 V",
+    "price": 61.09,
+    "img_src": "https://img.datacomp.sk/kingston-so-dimm-1x-8-gb-ddr4-3200-mhz_igb460155.jpg",
+    "category1": "DDR4",
+    "category2": "8 GB"
+  },
+  {
+    "id": 7,
+    "name": "Kingston FURY Beast Black EXPO, 16GB, 6400MHz",
+    "detail": "pamäť RAM pre PC, 1 x 16 GB, DDR5 (PC5), 6400 Mhz (PC5-51200), CL32, AMD EXPO, 1,4 V, herná, pasívny chladič",
+    "price": 206.65,
+    "img_src": "https://img.datacomp.sk/kingston-fury-beast-black-expo-16gb-6400mhz-ddr5_igb486467.jpg",
+    "category1": "DDR5",
+    "category2": "16 GB"
+  },
+  {
+    "id": 8,
+    "name": "Kingston Fury Impact, 8GB, 3200 MHz, DDR4, SO-DIMM",
+    "detail": "pamäť RAM pre notebooky, 1 x 8 GB, SO-DIMM DDR4 (PC4), 3200 Mhz (PC4-25600), CL20, Intel XMP, 1,2 V, herná",
+    "price": 61.25,
+    "img_src": "https://img.datacomp.sk/kingston-fury-impact-8gb-3200-mhz-ddr4-so-dimm_igb424174.jpg",
+    "category1": "DDR4",
+    "category2": "8 GB"
+  },
+  {
+    "id": 9,
+    "name": "Crucial 16GB DDR5-5600 UDIMM",
+    "detail": "pamäť RAM pre PC, 1 x 16 GB, DDR5 (PC5), 5600 Mhz (PC5-44800), CL46, 1,1 V",
+    "price": 161.11,
+    "img_src": "https://img.datacomp.sk/crucial-16gb-ddr5-5600-udimm_igb460320.jpg",
+    "category1": "DDR5",
+    "category2": "16 GB"
+  },
+  {
+    "id": 10,
+    "name": "Kingston SO-DIMM 1x 16 GB DDR4, 3200 MHz",
+    "detail": "pamäť RAM pre notebooky, 1 x 16 GB, 3200 Mhz (PC4-25600), CL22, 1,2 V",
+    "price": 109.25,
+    "img_src": "https://img.datacomp.sk/kingston-so-dimm-1x-16-gb-ddr4-3200-mhz_igb414452.jpg",
+    "category1": "DDR4",
+    "category2": "16 GB"
+  },
+  {
+    "id": 11,
+    "name": "Kingston Fury Beast, 2x16 GB, 3200 MHz, DDR4",
+    "detail": "pamäť RAM pre PC, 2 x 16 GB, 3200 Mhz (PC4-25600), CL16, s chladičom",
+    "price": 220.8,
+    "img_src": "https://img.datacomp.sk/kingston-fury-beast-2x16-gb-3200-mhz-ddr4_igb423813.jpg",
+    "category1": "DDR4",
+    "category2": "2x16 GB"
+  },
+  {
+    "id": 12,
+    "name": "Kingston FURY Beast, 2x16GB, 3200 MHz, DDR4",
+    "detail": "pamäť RAM pre PC, 2 x 16 GB, 3200 Mhz (PC4-25600), CL16, s chladičom",
+    "price": 220.8,
+    "img_src": "https://img.datacomp.sk/kingston-fury-beast-2x16gb-3200-mhz-ddr4_igb423812.jpg",
+    "category1": "DDR4",
+    "category2": "2x16 GB"
+  },
+  {
+    "id": 13,
+    "name": "Kingston FURY Renegade, 32GB, 3600 MHz, DDR4",
+    "detail": "pamäť RAM pre PC, 1 x 32 GB, DDR4 (PC4), 3600 Mhz (PC4-28800), CL18, Intel XMP, 1,35 V, herná, pasívny chladič",
+    "price": 288.9,
+    "img_src": "https://img.datacomp.sk/kingston-fury-renegade-32gb-3600-mhz-ddr4_igb470925.jpg",
+    "category1": "DDR4",
+    "category2": "32 GB"
+  },
+  {
+    "id": 14,
+    "name": "2-Power 4GB PC3-10600U 1333MHz DDR3 CL9 Non-ECC DIMM 2Rx8",
+    "detail": "pamäť RAM pre PC, 4 GB , 1333 Mhz (PC3-10600), CL 9, s chladičom",
+    "price": 12.55,
+    "img_src": "https://img.datacomp.sk/2-power-4gb-pc3-10600u-1333mhz-ddr3-cl9-non-ecc-dimm-2rx8_igb449566.jpg",
+    "category1": "DDR3",
+    "category2": "4 GB"
+  },
+  {
+    "id": 15,
+    "name": "Crucial SO-DIMM 16GB, 3200MHz, DDR4",
+    "detail": "pamäť RAM pre notebooky, 16 GB, 3200 Mhz (PC4-25600), CL22",
+    "price": 127,
+    "img_src": "https://img.datacomp.sk/crucial-so-dimm-16gb-3200mhz-ddr4_igb413137.jpg",
+    "category1": "DDR4",
+    "category2": "16 GB"
+  },
+  {
+    "id": 16,
+    "name": "Patriot Viper Steel RGB, 32 GB 3200 MHz, DDR4",
+    "detail": "pamäť RAM pre PC, 2 x 16 GB, DDR4 (PC4), 3200 Mhz (PC4-25600), CL16, Intel XMP, 1,35 V, RGB podsvietenie, herná",
+    "price": 225.2,
+    "img_src": "https://img.datacomp.sk/patriot-viper-steel-rgb-32-gb-3200-mhz-ddr4_igb454808.jpg",
+    "category1": "DDR4",
+    "category2": "2x16 GB"
+  }
+]

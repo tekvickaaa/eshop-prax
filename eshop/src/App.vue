@@ -1,9 +1,49 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import ProductCard from './components/ProductCard.vue';
 import WelcomeItem from './components/WelcomeItem.vue';
 import CartDrawer from './components/CartDrawer.vue';
-import items from './assets/items.json';
+import AddProductForm from './components/AddProductForm.vue';
+import UpdateProductForm from './components/UpdateProductForm.vue';
+
+interface Product {
+  id: number
+  name: string
+  detail: string
+  price: number
+  img_src: string
+  category1: string
+  category2: string
+}
+
+const products = ref<Product[]>([]);
+const isAddFormOpen = ref(false);
+const isUpdateFormOpen = ref(false);
+
+async function fetchProducts() {
+  try {
+    const response = await fetch('http://localhost:3333/products')
+    if (!response.ok) throw new Error('Failed to fetch products')
+    const data = await response.json()
+    products.value = data
+  } catch (error) {
+    console.error('Error fetching products:', error)
+  }
+}
+
+function handleProductAdded() {
+  fetchProducts()
+  isAddFormOpen.value = false
+}
+
+function handleProductUpdated() {
+  fetchProducts()
+  isUpdateFormOpen.value = false
+}
+
+onMounted(() => {
+  fetchProducts()
+})
 
 interface CartItem {
   id: number
@@ -22,11 +62,11 @@ const priceTo = ref<number | null>(null);
 const selectedCategory1 = ref('');
 const selectedCategory2 = ref('');
 
-const categories1 = [...new Set(items.map(item => item.category1))];
-const categories2 = [...new Set(items.map(item => item.category2))];
+const categories1 = computed(() => [...new Set(products.value.map(item => item.category1))]);
+const categories2 = computed(() => [...new Set(products.value.map(item => item.category2))]);
 
 const filteredProducts = computed(() => {
-  return items.filter(product => {
+  return products.value.filter(product => {
     if (searchText.value) {
       const search = searchText.value.toLowerCase();
       const matchesText = product.name.toLowerCase().includes(search) ||
@@ -58,7 +98,7 @@ function cartItemCount() {
 }
 
 function addToCart(productId: number) {
-  const product = items.find(item => item.id === productId);
+  const product = products.value.find(item => item.id === productId);
   if (!product) return;
 
   const existingItem = cart.value.find(item => item.id === productId);
@@ -111,6 +151,12 @@ function buyCart() {
           🛒 Košík
           <span v-if="cartItemCount() > 0" class="cart-badge">{{ cartItemCount() }}</span>
         </button>
+        <button class="cart-btn" @click="isAddFormOpen = true">
+          Add product
+        </button>
+        <button class="cart-btn" @click="isUpdateFormOpen = true">
+          Change product
+        </button>
       </div>
     </div>
   </nav>
@@ -122,6 +168,18 @@ function buyCart() {
     @update-quantity="updateQuantity"
     @remove-item="removeFromCart"
     @buy="buyCart"
+  />
+
+  <AddProductForm
+    v-if="isAddFormOpen"
+    @close="isAddFormOpen = false"
+    @product-added="handleProductAdded"
+  />
+
+  <UpdateProductForm
+    v-if="isUpdateFormOpen"
+    @close="isUpdateFormOpen = false"
+    @product-updated="handleProductUpdated"
   />
 
   <header class="wrapped">
