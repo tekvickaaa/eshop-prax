@@ -9,22 +9,24 @@ const props = defineProps<{
   productPrice: number
 }>();
 
-const emit = defineEmits(['add-to-cart']);
+const emit = defineEmits(['add-to-cart', 'remove-product', 'edit-product']);
 
 function handleAddToCart() {
   emit('add-to-cart', props.productId);
 }
 
+function handleEditProduct() {
+  emit('edit-product', props.productId);
+}
+
 async function handleRemoveProduct() {
   try {
-    const response = await fetch(`http://localhost:3333/products/${props.productId}`, {
+    await fetch(`http://localhost:3333/products/${props.productId}`, {
       method: 'DELETE'
     });
-    if (!response.ok) {
-      console.error('Failed to remove product');
-    } 
+    emit('remove-product', props.productId);
   } catch (error) {
-    console.error('Error removing product:', error);
+    console.error('Failed to remove product:', error);
   }
 }
 </script>
@@ -37,10 +39,13 @@ async function handleRemoveProduct() {
       <span class="product-category">{{ productCategory1 }}</span>
       <span class="product-category">{{ productCategory2 }}</span>
       <p>{{ productDesc }}</p>
-      <div class="product-cart">
+      <div class="product-actions">
         <span class="price">{{ productPrice }} €</span>
-        <button @click="handleRemoveProduct()">Remove</button>
-        <button @click="handleAddToCart()">Add to Cart</button>
+        <div class="button-group">
+          <button @click="handleEditProduct()" class="edit-btn">Edit</button>
+          <button @click="handleRemoveProduct()" class="remove-btn">Remove</button>
+          <button @click="handleAddToCart()" class="add-btn">Add to Cart</button>
+        </div>
       </div>
     </div>
   </div>
@@ -57,7 +62,7 @@ h4 {
   flex-direction: column;
   justify-content: space-between;
   width: 18rem;
-  height: 24rem;
+  height: 28rem;
   background-color: #dfdff0;
   color: #080808;
   border-radius: 2rem;
@@ -65,13 +70,30 @@ h4 {
 }
 
 .product-card button {
-  font-size: 1.1rem;
+  font-size: 0.85rem;
   background-color: #190d55;
   color: white;
   border: none;
-  border-radius: 0.8rem;
-  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.6rem;
   cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.product-card button:hover {
+  opacity: 0.8;
+}
+
+.product-card .edit-btn {
+  background-color: #4a5568;
+}
+
+.product-card .remove-btn {
+  background-color: #c53030;
+}
+
+.product-card .add-btn {
+  background-color: #190d55;
 }
 
 .product-card img {
@@ -89,16 +111,22 @@ h4 {
   margin-right: 0.25rem;
 }
 
-.product-cart {
+.product-actions {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .price {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: bold;
+  color: #190d55;
 }
 
 p {

@@ -19,6 +19,7 @@ interface Product {
 const products = ref<Product[]>([]);
 const isAddFormOpen = ref(false);
 const isUpdateFormOpen = ref(false);
+const selectedProductId = ref<number | null>(null);
 
 async function fetchProducts() {
   try {
@@ -39,6 +40,15 @@ function handleProductAdded() {
 function handleProductUpdated() {
   fetchProducts()
   isUpdateFormOpen.value = false
+}
+
+function handleProductDeleted() {
+  fetchProducts()
+}
+
+function handleEditProduct(productId: number) {
+  selectedProductId.value = productId
+  isUpdateFormOpen.value = true
 }
 
 onMounted(() => {
@@ -178,6 +188,7 @@ function buyCart() {
 
   <UpdateProductForm
     v-if="isUpdateFormOpen"
+    :product-id="selectedProductId"
     @close="isUpdateFormOpen = false"
     @product-updated="handleProductUpdated"
   />
@@ -234,6 +245,8 @@ function buyCart() {
       :product-category2="product.category2"
       :product-price="product.price"
       @add-to-cart="addToCart"
+      @edit-product="handleEditProduct"
+      @remove-product="handleProductDeleted"
     />
     </div>
   </main>

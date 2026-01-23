@@ -99,28 +99,66 @@ app.get('/products/:id', (req, res) => {
   res.json(product)
 })
 
-app.put('/products/:id', (req, res) => {
+app.put('/products/:id', upload.single('image'), (req, res) => {
   const { id } = req.params
   const { name, detail, price, category1, category2, img_src } = req.body
 
-  const product = products.find(p => p.id == id)
+  const product = products.find(p => p.id === parseInt(id))
+  
+  if (!product) {
+    return res.status(404).json({ error: 'Product not found' })
+  }
+
+  if (!name || !price) {
+    return res.status(400).json({ error: 'Name and price are required' })
+  }
+
+  const parsedPrice = parseFloat(price)
+  if (isNaN(parsedPrice) || parsedPrice < 0) {
+    return res.status(400).json({ error: 'Price must be a valid positive number' })
+  }
+
   const index = products.indexOf(product)
 
-  products[index].name = name
-  products[index].detail = detail
-  products[index].price = price
-  products[index].category1 = category1
-  products[index].category2 = category2
-  products[index].img_src = img_src
+  let imageUrl = product.img_src
+  if (req.file) {
+    imageUrl = `http://localhost:${port}/uploads/${req.file.filename}`
+  } else if (img_src) {
+    imageUrl = img_src
+  }
 
-  res.json(product)
+  products[index] = {
+    ...product,
+    name,
+    detail: detail || '',
+    price: parsedPrice,
+    category1: category1 || '',
+    category2: category2 || '',
+    img_src: imageUrl
+  }
+
+  fs.writeFileSync('./products.json', JSON.stringify(products, null, 2))
+
+  res.json({
+    message: 'Product updated successfully',
+    product: products[index]
+  })
 })
 
 app.delete('/products/:id', (req, res) => {
   const { id } = req.params
   const product = products.find((p) => p.id == id)
-  products.splice(products.indexOf(product), 1)
-  res.json(product)
+  const index = products.indexOf(product)
+
+  if(index === -1) {
+    return res.status(404).json({ error: 'Product not found' })
+  }
+
+  products.splice(index, 1)
+  
+  fs.writeFileSync('./products.json', JSON.stringify(products, null, 2))
+  
+  res.json({ message: 'Product deleted successfully', product: product })
 })
 
 

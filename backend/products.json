@@ -9,15 +9,6 @@
     "category2": "2x8 GB"
   },
   {
-    "id": 2,
-    "name": "Kingston FURY Beast, 2x32GB, 5600MHz, DDR5",
-    "detail": "pamäť RAM pre PC, 2 x 32 GB, DDR5 (PC5), 5600 Mhz (PC5-44800), CL40, Intel XMP, 1,25 V, herná, pasívny chladič",
-    "price": 730.8,
-    "img_src": "https://img.datacomp.sk/kingston-fury-beast-2x32gb-5600mhz-ddr5_igb437842.jpg",
-    "category1": "DDR5",
-    "category2": "2x32 GB"
-  },
-  {
     "id": 3,
     "name": "Kingston Fury Impact, 16GB, 3200 MHz, DDR4, SO-DIMM",
     "detail": "pamäť RAM pre notebooky, 1 x 16 GB, SO-DIMM DDR4 (PC4), 3200 Mhz (PC4-25600), CL20, Intel XMP, 1,2 V, herná",
@@ -136,7 +127,7 @@
   },
   {
     "id": 16,
-    "name": "Patriot Viper Steel RGB, 32 GB 3200 MHz, DDR4",
+    "name": "test",
     "detail": "pamäť RAM pre PC, 2 x 16 GB, DDR4 (PC4), 3200 Mhz (PC4-25600), CL16, Intel XMP, 1,35 V, RGB podsvietenie, herná",
     "price": 225.2,
     "img_src": "https://img.datacomp.sk/patriot-viper-steel-rgb-32-gb-3200-mhz-ddr4_igb454808.jpg",

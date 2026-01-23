@@ -1,9 +1,22 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 
-const emit = defineEmits(['close', 'product-added'])
+const props = defineProps<{
+  productId: number | null
+}>()
+
+const emit = defineEmits(['close', 'product-updated'])
 
 const formData = ref({
+  name: '',
+  detail: '',
+  price: '',
+  category1: '',
+  category2: '',
+  img_src: ''
+})
+
+const originalData = ref({
   name: '',
   detail: '',
   price: '',
@@ -16,6 +29,7 @@ const selectedImage = ref<File | null>(null)
 const imagePreview = ref<string>('')
 const isSubmitting = ref(false)
 const isChanging = ref(false)
+const isLoading = ref(false)
 const errorMessage = ref('')
 
 function handleImageSelect(event: Event) {
@@ -33,50 +47,39 @@ function handleImageSelect(event: Event) {
   }
 }
 
-async function submitProduct() {
+async function fetchProductData() {
+  if (!props.productId) return
+  
+  isLoading.value = true
   errorMessage.value = ''
   
-  if (!formData.value.name || !formData.value.price) {
-    errorMessage.value = 'Name and price are required'
-    return
-  }
-  
-  isSubmitting.value = true
-  
   try {
-    const formDataToSend = new FormData()
-    formDataToSend.append('name', formData.value.name)
-    formDataToSend.append('detail', formData.value.detail)
-    formDataToSend.append('price', formData.value.price)
-    formDataToSend.append('category1', formData.value.category1)
-    formDataToSend.append('category2', formData.value.category2)
-    
-    if (selectedImage.value) {
-      formDataToSend.append('image', selectedImage.value)
-    } else if (formData.value.img_src) {
-      formDataToSend.append('img_src', formData.value.img_src)
-    }
-    
-    const response = await fetch('http://localhost:3333/products', {
-      method: 'POST',
-      body: formDataToSend
-    })
-    
+    const response = await fetch(`http://localhost:3333/products/${props.productId}`)
     if (!response.ok) {
-      const error = await response.json()
-      throw new Error(error.error || 'Failed to add product')
+      throw new Error('Failed to fetch product data')
     }
     
-    const result = await response.json()
-    console.log('Product added:', result)
+    const product = await response.json()
     
-    emit('product-added')
-    resetForm()
+    originalData.value = {
+      name: product.name,
+      detail: product.detail || '',
+      price: product.price.toString(),
+      category1: product.category1 || '',
+      category2: product.category2 || '',
+      img_src: product.img_src || ''
+    }
+    
+    formData.value = { ...originalData.value }
+    
+    if (product.img_src) {
+      imagePreview.value = product.img_src
+    }
   } catch (error) {
-    errorMessage.value = error instanceof Error ? error.message : 'An error occurred'
-    console.error('Error adding product:', error)
+    errorMessage.value = error instanceof Error ? error.message : 'Failed to load product'
+    console.error('Error fetching product:', error)
   } finally {
-    isSubmitting.value = false
+    isLoading.value = false
   }
 }
 
@@ -85,6 +88,11 @@ async function updateProduct() {
   
   if (!formData.value.name || !formData.value.price) {
     errorMessage.value = 'Name and price are required'
+    return
+  }
+  
+  if (!props.productId) {
+    errorMessage.value = 'No product selected'
     return
   }
   
@@ -104,41 +112,37 @@ async function updateProduct() {
       formDataToSend.append('img_src', formData.value.img_src)
     }
     
-    const response = await fetch('http://localhost:3333/products/1', {
+    const response = await fetch(`http://localhost:3333/products/${props.productId}`, {
       method: 'PUT',
       body: formDataToSend
     })
     
     if (!response.ok) {
       const error = await response.json()
-      throw new Error(error.error || 'Failed to add product')
+      throw new Error(error.error || 'Failed to update product')
     }
     
     const result = await response.json()
-    console.log('Product added:', result)
+    console.log('Product updated:', result)
     
-    emit('product-added')
-    resetForm()
+    emit('product-updated')
+    emit('close')
   } catch (error) {
     errorMessage.value = error instanceof Error ? error.message : 'An error occurred'
-    console.error('Error adding product:', error)
+    console.error('Error updating product:', error)
   } finally {
     isChanging.value = false
   }
 }
 
-
 function resetForm() {
-  formData.value = {
-    name: '',
-    detail: '',
-    price: '',
-    category1: '',
-    category2: '',
-    img_src: ''
-  }
+  formData.value = { ...originalData.value }
   selectedImage.value = null
-  imagePreview.value = ''
+  if (originalData.value.img_src) {
+    imagePreview.value = originalData.value.img_src
+  } else {
+    imagePreview.value = ''
+  }
   errorMessage.value = ''
 }
 
@@ -146,17 +150,29 @@ function closeForm() {
   resetForm()
   emit('close')
 }
+
+onMounted(() => {
+  fetchProductData()
+})
+
+watch(() => props.productId, () => {
+  fetchProductData()
+})
 </script>
 
 <template>
   <div class="modal-overlay" @click.self="closeForm">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>Add New Product</h2>
+        <h2>Update Product</h2>
         <button class="close-btn" @click="closeForm">×</button>
       </div>
       
-      <form @submit.prevent="updateProduct" class="product-form">
+      <div v-if="isLoading" class="loading-message">
+        Loading product data...
+      </div>
+      
+      <form v-else @submit.prevent="updateProduct" class="product-form">
         <div class="form-group">
           <label for="name">Product Name *</label>
           <input 
@@ -367,6 +383,13 @@ function closeForm() {
 
 .remove-preview:hover {
   background-color: #c82333;
+}
+
+.loading-message {
+  padding: 2rem;
+  text-align: center;
+  color: #666;
+  font-size: 1.1rem;
 }
 
 .error-message {
